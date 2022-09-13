@@ -13,14 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('Salas', function (Blueprint $table) {
+        Schema::create('Customers', function (Blueprint $table) {
             $table->id();
 
-            $table->string('Name');
-            $table->string('Description')->nullable();
-            $table->foreignId('predio_id')->constrained();
-            $table->foreignId('photogallery_id')->nullable()->constrained();
-            $table->foreignId('tipagemsala_id')->constrained();
+            $table->string('CompanyName');
+            $table->string('FancyName');
+            $table->string('CNPJ', 16)->unique();
+            $table->string('Phone', 16);
+            $table->string('email');
+            $table->date('Birthday');
+            $table->foreignId('address_id')->constrained();
 
             $table->timestamps();
         });
@@ -33,6 +35,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('salas');
+        Schema::dropIfExists('clientes');
     }
 };

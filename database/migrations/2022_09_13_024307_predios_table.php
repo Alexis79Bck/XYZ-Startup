@@ -13,8 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('predios', function (Blueprint $table) {
+        Schema::create('Predios', function (Blueprint $table) {
             $table->id();
+
+            $table->string('Name');
+            $table->string('Description');
+            $table->string('URLGoogleMap');
+            $table->foreignId('address_id')->constrained();
+            $table->foreignId('photogallery_id')->nullable()->constrained();
+            $table->foreignId('customer_id')->constrained();
+
             $table->timestamps();
         });
     }

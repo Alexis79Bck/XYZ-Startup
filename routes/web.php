@@ -13,10 +13,10 @@
 |
 */
 
-$router->get('/', function () use ($router) {
-    return $router->app->version();
-});
+// $router->get('/', function () use ($router) {
+//     return $router->app->version();
+// });
 
-$router->get('/Saludo', function () use ($router) {
-    return 'Hola Mundo!!!';
-});
+$router->get('/customers', 'CustomerController@index');
+$router->post('/customers', 'CustomerController@store');
+$router->get('/addresses', 'AddressController@index');

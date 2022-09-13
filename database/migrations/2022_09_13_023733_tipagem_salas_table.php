@@ -15,6 +15,11 @@ return new class extends Migration
     {
         Schema::create('TipagemSalas', function (Blueprint $table) {
             $table->id();
+
+            $table->string('Name');
+            $table->string('Description')->nullable();
+            $table->unsignedFloat('CostPerMinute',10,2);
+
             $table->timestamps();
         });
     }

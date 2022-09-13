@@ -13,15 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('Salas', function (Blueprint $table) {
+        Schema::create('Addresses', function (Blueprint $table) {
             $table->id();
-
-            $table->string('Name');
-            $table->string('Description')->nullable();
-            $table->foreignId('predio_id')->constrained();
-            $table->foreignId('photogallery_id')->nullable()->constrained();
-            $table->foreignId('tipagemsala_id')->constrained();
-
+            $table->string('CEP', 9);
+            $table->string('State');
+            $table->string('UF');
+            $table->string('City');
+            $table->string('StreetAddress');
+            $table->string('Number');
+            $table->string('Complement');
             $table->timestamps();
         });
     }
@@ -33,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('salas');
+        Schema::dropIfExists('Addresses');
     }
 };
