@@ -18,10 +18,18 @@ return new class extends Migration
 
             $table->string('Name');
             $table->string('Description');
-            $table->string('URLGoogleMap');
-            $table->foreignId('address_id')->constrained();
-            $table->foreignId('photogallery_id')->nullable()->constrained();
-            $table->foreignId('customer_id')->constrained();
+            $table->string('URLGoogleMap')->nullable();
+            $table->string('CEP', 9);
+            $table->string('State');
+            $table->string('UF');
+            $table->string('City');
+            $table->string('StreetAddress')->nullable();
+            $table->string('Number');
+            $table->string('Complement')->nullable();
+            $table->string('customer_cnpj');
+            $table->foreign('customer_cnpj')->references('CNPJ')->on('Customers');
+            $table->unsignedBigInteger('photogallery_id');
+            $table->foreign('photogallery_id')->references('id')->on('PhotoGalleries');
 
             $table->timestamps();
         });

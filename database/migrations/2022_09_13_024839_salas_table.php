@@ -18,9 +18,12 @@ return new class extends Migration
 
             $table->string('Name');
             $table->string('Description')->nullable();
-            $table->foreignId('predio_id')->constrained();
-            $table->foreignId('photogallery_id')->nullable()->constrained();
-            $table->foreignId('tipagemsala_id')->constrained();
+            $table->unsignedBigInteger('predio_id');
+            $table->foreign('predio_id')->references('id')->on('Predios');
+            $table->unsignedBigInteger('photogallery_id');
+            $table->foreign('photogallery_id')->references('id')->on('PhotoGalleries');
+            $table->unsignedBigInteger('typeSala_id');
+            $table->foreign('typeSala_id')->references('id')->on('TypesSalas');
 
             $table->timestamps();
         });

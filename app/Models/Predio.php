@@ -7,8 +7,22 @@ class Predio extends Model{
     protected $table = "predios";
 
     protected $fillable = [
-        'Name', 'Description', 'URLGoogleMap', 'address_id', 'photogallery_id', 'customer_id'
+        'Name', 'Description', 'URLGoogleMap',
     ];
 
-    // public $timestamps = false;
+    public function customers()
+    {
+        return $this->belongsTo(Customer::class);
+    }
+
+    public function salas()
+    {
+        return $this->hasMany(Sala::class);
+    }
+
+    public function gallery()
+    {
+        return $this->morphOne(PhotoGallery::class, 'galleryAvailable');
+    }
+
 }

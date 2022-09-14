@@ -5,10 +5,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Customer extends Model{
     protected $table = "customers";
+    protected $primaryKey = "CNPJ";
+    protected $keyType = 'string';
 
     protected $fillable = [
-        'CompanyName', 'FancyName', 'CNPJ', 'Phone', 'email', 'Birthday', 'address_id'
+        'CompanyName', 'FancyName', 'CNPJ', 'Phone', 'email', 'Birthday'
     ];
 
-    // public $timestamps = false;
+    public function predio()
+    {
+        return $this->hasMany(Predio::class);
+    }
 }

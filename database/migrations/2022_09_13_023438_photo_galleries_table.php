@@ -15,11 +15,10 @@ return new class extends Migration
     {
         Schema::create('PhotoGalleries', function (Blueprint $table) {
             $table->id();
-
-            $table->string('Title');
-            $table->string('ImagePath');
+            $table->string('name');
             $table->enum('Type', ['Predios', 'Salas']);
-            
+            $table->unsignedBigInteger('Model_id');
+            $table->string('Model_Type');
             $table->timestamps();
         });
     }

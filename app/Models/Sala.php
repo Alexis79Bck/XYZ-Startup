@@ -10,5 +10,17 @@ class Sala extends Model{
         'Name', 'Description', 'predio_id', 'photogallery_id', 'tipagemsala_id'
     ];
 
-    // public $timestamps = false;
+    public function gallery()
+    {
+        return $this->morphOne(PhotoGallery::class, 'galleryAvailable');
+    }
+
+    public function typeSala(){
+        return $this->hasOne(TypeSala::class);
+    }
+
+    public function predio()
+    {
+        return $this->belongsTo(Predio::class);
+    }
 }
