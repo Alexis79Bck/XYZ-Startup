@@ -21,10 +21,10 @@
  * Customers Web Routes
  */
 $router->get('/customers', 'CustomerController@index');
-$router->get('/customer/{cnpj}', 'CustomerController@show');
+$router->get('/customer/{id}', 'CustomerController@show');
 $router->post('/customer', 'CustomerController@store');
-$router->put('/customer/{cnpj}', 'CustomerController@update');
-$router->delete('/customer/{cnpj}', 'CustomerController@destroy');
+$router->put('/customer/{id}', 'CustomerController@update');
+$router->delete('/customer/{id}', 'CustomerController@destroy');
 
 /**
  * Predios Web Routes
@@ -45,7 +45,7 @@ $router->put('/sala/{id}', 'SalaController@update');
 $router->delete('/sala/{id}', 'SalaController@destroy');
 
 /**
- * Sala Web Routes
+ * Type Sala Web Routes
  */
 $router->get('/types-salas', 'TypeSalaController@index');
 $router->get('/type-sala/{id}', 'TypeSalaController@show');
@@ -58,15 +58,15 @@ $router->delete('/type-sala/{id}', 'TypeSalaController@destroy');
  */
 $router->get('/photo-galleries', 'PhotoGalleryController@index');
 $router->get('/photo-gallery/{id}', 'PhotoGalleryController@show');
+$router->get('/photo-gallery/{id}/collection', 'PhotoGalleryController@getImagesCollection');
 $router->post('/photo-gallery', 'PhotoGalleryController@store');
 $router->put('/photo-gallery/{id}', 'PhotoGalleryController@update');
 $router->delete('/photo-gallery/{id}', 'PhotoGalleryController@destroy');
 
 /**
- * Image Web Routes
+ * Images Collection Routes
  */
-$router->get('/types-salas', 'TypeSalaController@index');
-$router->get('/type-sala/{id}', 'TypeSalaController@show');
-$router->post('/type-sala', 'TypeSalaController@store');
-$router->put('/type-sala/{id}', 'TypeSalaController@update');
-$router->delete('/type-sala/{id}', 'TypeSalaController@destroy');
+$router->get('/image/{id}', 'ImageController@show');
+$router->post('/image', 'ImageController@store');
+$router->put('/image/{id}', 'ImageController@update');
+$router->delete('/image/{id}', 'ImageController@destroy');

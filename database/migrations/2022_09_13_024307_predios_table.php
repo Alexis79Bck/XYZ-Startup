@@ -26,8 +26,8 @@ return new class extends Migration
             $table->string('StreetAddress')->nullable();
             $table->string('Number');
             $table->string('Complement')->nullable();
-            $table->string('customer_cnpj');
-            $table->foreign('customer_cnpj')->references('CNPJ')->on('Customers');
+            $table->unsignedBigInteger('customer_id');
+            $table->foreign('customer_id')->references('id')->on('Customers');
             $table->unsignedBigInteger('photogallery_id');
             $table->foreign('photogallery_id')->references('id')->on('PhotoGalleries');
 

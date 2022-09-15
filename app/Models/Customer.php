@@ -5,11 +5,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Customer extends Model{
     protected $table = "customers";
-    protected $primaryKey = "CNPJ";
-    protected $keyType = 'string';
-
     protected $fillable = [
-        'CompanyName', 'FancyName', 'CNPJ', 'Phone', 'email', 'Birthday'
+        'CNPJ',  'CompanyName', 'FancyName',  'Phone', 'email', 'Birthday',
+        'CEP', 'State', 'UF', 'City', 'StreetAddress', 'Number','Complement'
     ];
 
     public function predio()

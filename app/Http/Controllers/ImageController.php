@@ -13,7 +13,8 @@ class ImageController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Response|\Laravel\Lumen\Http\ResponseFactory
      */
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
         $image = new Image;
         if ($request->input('Title')) {
             $image->Title = $request->Title;
@@ -46,6 +47,16 @@ class ImageController extends Controller
     }
 
     /**
+     * Summary of show
+     * @param mixed $id
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function show($id)
+    {
+        $image = Image::find($id);
+        return response()->json($image, 200);
+    }
+    /**
      * Summary of update
      * @param Request $request
      * @param mixed $id
@@ -76,4 +87,12 @@ class ImageController extends Controller
             return response()->json($data, 200);
         }
     }
+
+    public function destroy($id)
+    {
+        $image = Image::where('id', '=', $id)->first();
+        $image->delete();
+        return response('The image has been deleted successfully.');
+    }
+
 }

@@ -130,7 +130,7 @@ class SalaController extends Controller
     public function destroy($id)
     {
         $sala = Sala::where('id', '=', $id)->first();
-        $sala->destroy();
+        $sala->delete();
         return response('The sala has been deleted successfully.');
     }
 

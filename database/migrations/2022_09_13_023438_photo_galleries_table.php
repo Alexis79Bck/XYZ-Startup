@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('PhotoGalleries', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('Name');
             $table->enum('Type', ['Predios', 'Salas']);
             $table->unsignedBigInteger('Model_id');
             $table->string('Model_Type');

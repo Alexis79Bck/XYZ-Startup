@@ -4,10 +4,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 class PhotoGallery extends Model{
-    protected $table = "undefined";
+    protected $table = "PhotoGalleries";
 
     protected $fillable = [
-        'Title', 'ImagePath'
+        'Name', 'Type'
     ];
 
     public function galleryAvailable()
@@ -17,7 +17,7 @@ class PhotoGallery extends Model{
 
     public function imagesCollection()
     {
-        return $this->hasMany(Image::class);
+        return $this->hasMany(Image::class, 'photogallery_id');
     }
 
 }

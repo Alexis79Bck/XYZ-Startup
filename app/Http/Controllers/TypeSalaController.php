@@ -109,7 +109,7 @@ class TypeSalaController extends Controller
     public function destroy($id)
     {
         $typeSala = TypeSala::where('id', '=', $id)->first();
-        $typeSala->destroy();
+        $typeSala->delete();
         return response('The type sala has been deleted successfully.');
     }
 

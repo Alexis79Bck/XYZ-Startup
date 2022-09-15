@@ -24,7 +24,6 @@ class CustomerController extends Controller
     public function store(Request $request) {
 
         $customer = new Customer;
-
         if ($request->input('CNPJ')) {
             if ($this->validatePatternCNPJ($request->input('CNPJ'))) {
                 if ($this->checkCNPJ($request->input('CNPJ'))) {
@@ -33,7 +32,7 @@ class CustomerController extends Controller
                     $customer->CNPJ = $request->CNPJ;
                 }
             }else{
-                return response("* The CNPJ " . $request->input('CNPJ') . " format does not match. Correct format is ##.###.###/###-##");
+                return response("* The CNPJ " . $request->input('CNPJ') . " format does not match. Correct format is ########/###-##");
             }
         }else{
             return response("* This field is required.");
@@ -108,10 +107,10 @@ class CustomerController extends Controller
       * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Response|\Laravel\Lumen\Http\ResponseFactory
       */
 
-    public function show($cnpj)
+    public function show($id)
     {
-        if ($this->checkCNPJ($cnpj)) {
-            $customer = Customer::where('CNPJ', '=', $cnpj)->first();
+        if ($this->checkCNPJ($id)) {
+            $customer = Customer::where('id', '=', $id)->first();
             return response()->json($customer, 200);
         }else{
             return response("The customer don't exist in our records.");
@@ -124,9 +123,11 @@ class CustomerController extends Controller
      * @param mixed $cnpj
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Response|\Laravel\Lumen\Http\ResponseFactory
      */
-    public function update (Request $request, $cnpj) {
-        if ($this->checkCNPJ($cnpj)) {
-            $customer = Customer::where('CNPJ', '=', $cnpj)->first();
+    public function update (Request $request, $id) {
+
+        if ($this->checkCNPJ($id)) {
+            $customer = Customer::where('id', '=', $id)->first();
+
             if ($request->input('CompanyName')) {
                 $customer->CompanyName = $request->CompanyName;
             }
@@ -194,14 +195,14 @@ class CustomerController extends Controller
      * @param mixed $cnpj
      * @return \Illuminate\Http\Response|\Laravel\Lumen\Http\ResponseFactory
      */
-    public function destroy($cnpj)
+    public function destroy($id)
     {
-        if ($this->checkCNPJ($cnpj)) {
-            $customer = Customer::where('CNPJ', '=', $cnpj)->first();
-            $customer->destroy();
-            return response('The customer has been deleted successfully.');
-        }
+        $customer = Customer::find($id);
+        $customer->delete();
+        return response('The customer has been deleted successfully.');
+
     }
+
 
     /**
      * Summary of checkCNPJ
@@ -209,7 +210,8 @@ class CustomerController extends Controller
      * @return bool
      */
     private function checkCNPJ($value){
-        $customer= Customer::where('CNPJ', '=', $value)->first();
+        $customer= Customer::where('id', '=', $value)->first();
+
         if($customer){
             return true;
         }else{
@@ -224,7 +226,7 @@ class CustomerController extends Controller
      */
     private function validatePatternCNPJ($value)
     {
-        if (preg_match('/[0-9]{2}.[0-9]{3}.[0-9]{3}\/[0-9]{4}-[0-9]{2}/', $value)) {
+        if (preg_match('/[0-9]{8}\/[0-9]{4}-[0-9]{2}/', $value)) {
             return true;
         } else {
             return false;

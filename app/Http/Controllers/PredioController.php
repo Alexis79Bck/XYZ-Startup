@@ -180,7 +180,7 @@ class PredioController extends Controller
     public function destroy($id)
     {
         $predio = Predio::where('id', '=', $id)->first();
-        $predio->destroy();
+        $predio->delete();
         return response('The site has been deleted successfully.');
 
     }
